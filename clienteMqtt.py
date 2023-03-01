@@ -6,8 +6,10 @@ env = Env()
 env.read_env()
 
 async def main():
-    tls_context = ssl.create_default_context()
-    tls_context.load_verify_locations(certifi.where())
+    tls_context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+    tls_context.verify_mode = ssl.CERT_REQUIRED
+    tls_context.check_hostname = True
+    tls_context.load_default_certs()
 
     async with Client(
         env("SERVIDOR"),
