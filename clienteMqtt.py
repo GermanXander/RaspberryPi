@@ -3,7 +3,7 @@ from asyncio_mqtt import Client, ProtocolVersion
 from environs import Env
 
 env = Env()
-env.read_env()
+env.read_env() #lee el archivo con las variables. por defecto .env
 
 async def main():
     tls_context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
